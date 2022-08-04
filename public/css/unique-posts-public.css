@@ -1,0 +1,506 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+ div#upost_dashboard {
+    margin: 20px 0;
+}
+.pdf-actions {
+    margin: 20px 0;
+}
+.welcome_user {
+    float: right;
+    display: inline-flex;
+    gap: 20px;
+    align-items: center;
+}
+h3.welcome_back {
+    color: #2196f3;
+    font-size: 18px;
+}
+h3.welcome_back strong{
+    font-size: 20px;
+}
+a.add-new-post {
+    padding: 8px 15px;
+    background: #2196f3;
+    color: #fff;
+    border-radius: 3px;
+}
+a.add-new-post:hover{
+    opacity: .8;
+}
+div#profile_tabs {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+div#profile_tabs a {
+    padding: 5px 15px;
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
+    display: inline-block;
+}
+div#profile_tabs a.active {
+    background: #2196f3;
+    color: #fff;
+}
+div#profile_tabs a:hover{
+    border-color: #2196f3;
+}
+
+#upost_dashboard .uposts_table {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+#upost_dashboard .dataTables_filter {
+    float: right;
+}
+
+#upost_dashboard .table-hover>tbody>tr:hover {
+    background-color: lighten(cyan, 40%);
+}
+
+#upost_dashboard .dataTables_filter, .dataTables_length {
+    display: inline-block;
+}
+
+@media only screen and (min-width: 768px) {
+    #upost_dashboard .uposts_table {
+        table-layout: fixed;
+        max-width: 100% !important;
+    }
+}
+
+#upost_dashboard table thead, #upost_dashboard table tfoot {
+    background: #ddd;
+}
+
+#upost_dashboard .uposts_table td:nth-child(2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.mbl-th{
+    display: none;
+}
+@media only screen and (max-width: 767px) {
+    #upost_dashboard table thead, #upost_dashboard table tfoot{
+        display: none;
+    } 
+    .mbl-th{
+        display: block;
+    }
+    #upost_dashboard table tbody tr {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 5px solid #ddd;
+    }
+    #upost_dashboard .dataTables_paginate {
+        margin: 0 auto;
+    }
+}
+
+#upost_dashboard table.dataTable thead th, #upost_dashboard table.dataTable thead td {
+    padding: 5px 18px;
+    border-bottom: none;
+    text-align: left;
+}
+#upost_dashboard table.dataTable tbody td {
+    padding: 5px 18px !important;
+}
+#upost_dashboard table.dataTable tbody td a:hover {
+    text-decoration: underline;
+}
+#upost_dashboard table.dataTable thead th:first-child, #upost_dashboard table.dataTable tfoot th:first-child{
+    width: 34%;
+}
+#upost_dashboard table.dataTable tfoot th, #upost_dashboard table.dataTable tfoot td {
+    padding: 5px 18px;
+    border-top: none;
+    text-align: left;
+}
+#upost_dashboard .dataTables_paginate {
+    border: 1px solid #ddd;
+    padding: 0 !important;
+    width: fit-content !important;
+    display: inline-block;
+    float: right;
+}
+#upost_dashboard .dataTables_info {
+    padding: 0 !important;
+    display: inline-block;
+}
+#upost_dashboard .dataTables_wrapper .dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 36px;
+    height: 35px;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: #333 !important;
+    border: none !important;
+    margin: 0;
+    border-radius: 0;
+    border-left: 1px solid #ddd !important;
+}
+#upost_dashboard .dataTables_wrapper .dataTables_paginate .paginate_button:first-child{
+    border-left: none !important;
+}
+#upost_dashboard .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    color: #fff !important;
+    background: #2196f3 !important;
+    border: none;
+}
+#upost_dashboard .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: none;
+    background: #2196f3;
+    opacity: .7;
+}
+.upost-edit-btn {
+    margin-right: 5px;
+    padding-right: 12px;
+    border-right: 1px solid #ddd;
+}
+.upost-edit-btn:hover, .upost-del-btn:hover{
+    text-decoration: underline;
+}
+
+.upost_input {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.upost_input .label_box {
+    width: 10%;
+    text-align: right;
+    padding-right: 20px;
+}
+.upost_input .label_box label {
+    font-weight: 600;
+}
+.upost_input .input_box {
+    width: 90%;
+}
+.upost_input .input_box input, .upost_input .input_box select {
+    all: unset;
+    width: 68%;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px !important;
+    outline: none;
+    box-shadow: none;
+    min-height: 30px;
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    -ms-border-radius: 3px !important;
+    -o-border-radius: 3px !important;
+    background-color: #fff;
+}
+select#post_type {
+    width: 150px;
+}
+div#wp-upost_article_content-wrap {
+    margin-top: -24px;
+}
+div#article_content {
+    width: 70%;
+}
+img[src=""] {
+    display: none;
+}
+input#upload_upost_images, input#upload_upost_pdf {
+    border: none;
+    padding: 0;
+    background: transparent;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: -99999px;
+}
+label[for="upload_upost_images"], label[for="upload_upost_pdf"] {
+    padding: 5px 15px;
+    background: #2196f3;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+}
+.upost_image_previews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.upost_image_previews .single_img {
+    border: 2px solid #ddd;
+    width: 100px;
+    height: 80px;
+    overflow: hidden;
+}
+.upost_image_previews .single_img img{
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -ms-border-radius: 0 !important;
+    -o-border-radius: 0 !important;
+    object-fit: cover !important;
+    width: 100%;
+    height: 100%;
+}
+#pdf_content .upost_pdf_previews {
+    margin-bottom: 20px;
+    width: 400px;
+    height: 250px;
+    overflow: hidden;
+    background: #6c6c6c;
+    border: 2px solid #ddd;
+}
+#pdf_content .upost_pdf_previews img {
+    border-radius: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -ms-border-radius: 0 !important;
+    -o-border-radius: 0 !important;
+}
+.post_title_link{
+    color: #504f58;
+}
+button#save_upost {
+    padding: 10px 15px;
+    background: #2196f3;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+}
+.quicktags-toolbar input[type="button"] {
+    all: unset;
+    cursor: pointer !important;
+    background-color: #f0f0f1 !important;
+    color: #686868 !important;
+    border: 0;
+    display: inline-block;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    position: relative;
+    text-decoration: none;
+    overflow: visible;
+    -webkit-border-radius: 3px !important;
+}
+div#wp-upost_article_content-editor-container button:hover {
+    background: #fff;
+}
+
+.success_popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 99;
+}
+.popup_contents {
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 10px 21px -23px black;
+}
+.popup_contents h3 {
+    color: #2196f3;
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid;
+}
+.popup_contents table {
+    all: unset;
+    display: table;
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    border: none;
+    padding: 0;
+}
+.popup_contents table tr th, .popup_contents table tr td {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+.popup_contents a {
+    text-decoration: underline;
+    font-size: 16px;
+}
+div#upost_images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+div#upost_images .upost_image {
+    width: calc(calc(100% / 5) - 7px);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    cursor: pointer;
+}
+div#upost_images .upost_image img {
+    border-radius: 0!important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid transparent;
+}
+div#upost_images .upost_image img:hover, div#upost_images .upost_image.active img{
+    border-color: #2196f3;
+}
+div#upost_image_preview {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #747474;
+    margin-bottom: 20px;
+}
+div#upost_image_preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+div#upost_pdf_preview .upost_pdf_previews {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #747474;
+    border: 2px solid #ddd;
+    position: relative;
+    margin-bottom: 20px;
+}
+div#upost_pdf_preview .upost_pdf_previews img {
+    border-radius: 0 !important;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+div#upost_pdf_preview .upost_pdf_previews span {
+    position: absolute;
+    font-size: 40px;
+    color: #fff;
+    background: #00000021;
+    width: 40px;
+    height: 50px;
+    line-height: 43px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+div#upost_pdf_preview .upost_pdf_previews span.leftPdfPage {
+    top: 50%;
+    transform: translateY(-50%);
+}
+div#upost_pdf_preview .upost_pdf_previews span.rightPdfPage {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+.dnone{
+    display: none;
+}
+
+
+.search_upost_contents {
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.search_upost_contents .search_box input {
+    all: unset;
+    width: 100%;
+    padding: 10px;
+}
+.search_upost_contents .search_box {
+    width: 70%;
+    margin: 0 auto;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    border: 1px solid #009688;
+    padding: 0 18px;
+}
+.search_upost_contents .search_box button {
+    all: unset;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    line-height: 10px;
+    cursor: pointer;
+}
+.search_upost_contents .search_box input {
+    all: unset;
+    width: 100%;
+    padding: 10px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+div#search_results {
+    margin-top: 20px;
+}
+div#search_results .result_contents .upost h3 {
+    margin: 0;
+}
+div#search_results .result_contents .upost .post-info {
+    margin: 0;
+    padding: 5px;
+    background: #009688;
+    color: #fff;
+    margin: 10px 0;
+}
+div#search_results .result_contents .upost .article_excerpt {
+    padding-left: 10px;
+    border-left: 5px solid #ddd;
+    margin-left: 15px;
+}
+div#search_results .result_contents .upost .article_excerpt p {
+    margin: 0;
+}
+div#search_results .result_contents .upost a.uubtn {
+    padding: 5px 15px;
+    background: #009688;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+}
+a.upost_btn {
+    padding: 5px 10px;
+    background: #03a9f4;
+    color: #fff;
+    margin-right: 10px;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+div#search_results .result_contents .upost a.view-post:hover{
+    text-decoration: underline;
+}
+div#search_results .result_contents .upost .upost_image{
+    cursor: default;
+}
+div#search_results .result_contents .upost .upost_image img {
+    border-color: #e1e1e1 !important;
+}
