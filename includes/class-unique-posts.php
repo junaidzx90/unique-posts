@@ -70,7 +70,7 @@ class Unique_Posts {
 		if ( defined( 'UNIQUE_POSTS_VERSION' ) ) {
 			$this->version = UNIQUE_POSTS_VERSION;
 		} else {
-			$this->version = '1.0.2';
+			$this->version = '1.0.3';
 		}
 		$this->plugin_name = 'unique-posts';
 

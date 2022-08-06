@@ -205,11 +205,7 @@ class Unique_Posts_Public {
 					break;
 				case 'pdf':
 					$the_content .= '<div id="upost_pdf_preview" data-src="'.$post_pdf.'">';
-					$the_content .= '<div class="upost_pdf_previews">';
-					$the_content .= '<span class="leftPdfPage">❮</span>';
-					$the_content .= '<img src="">';
-					$the_content .= '<span class="rightPdfPage">❯</span>';
-					$the_content .= '</div>';
+					$the_content .= '<div class="pdf-actions">';
 					$the_content .= '<a target="_blank" class="upost_btn" href="'.$post_pdf.'">Open this file</a>';
 					
 					$nametitle = str_replace([" ", ",", "'"], "-", $post->post_title);
@@ -217,6 +213,12 @@ class Unique_Posts_Public {
 					
 					$the_content .= '<a class="download-file upost_btn" data-name="'.strtolower( $nametitle ).'" data-pdf="'.$post_pdf.'" href="'.$post_pdf.'">Download</a>';
 					
+					$the_content .= '</div>';
+					$the_content .= '<div class="upost_pdf_previews">';
+					$the_content .= '<span class="leftPdfPage">❮</span>';
+					$the_content .= '<img src="">';
+					$the_content .= '<span class="rightPdfPage">❯</span>';
+					$the_content .= '</div>';
 					$the_content .= '</div>';
 					break;
 			}
