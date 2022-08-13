@@ -62,7 +62,9 @@ div#profile_tabs a:hover{
 #upost_dashboard .dataTables_filter, .dataTables_length {
     display: inline-block;
 }
-
+h3.welcome_back {
+    margin: 0;
+}
 .pdf-actions {
     margin: 20px 0;
     margin-bottom: 10px;
@@ -313,7 +315,7 @@ div#wp-upost_article_content-editor-container button:hover {
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(5px);
-    z-index: 99;
+    z-index: 99999;
 }
 .popup_contents {
     padding: 20px;
