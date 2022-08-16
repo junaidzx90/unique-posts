@@ -106,7 +106,7 @@ class Unique_Posts_Public {
 		wp_enqueue_script( 'pdf-js', UNIQUE_POSTS_ROOT . 'global/pdf.js', array(  ), $this->version, false );
 		wp_enqueue_script( 'worker-js', UNIQUE_POSTS_ROOT . 'global/pdf.warker.js', array( 'pdf-js', 'FileSaver' ), $this->version, false );
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/unique-posts-public.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/unique-posts-public.js', array( 'jquery', 'worker-js' ), $this->version, true );
 
 	}
 
@@ -206,6 +206,8 @@ class Unique_Posts_Public {
 				case 'pdf':
 					$the_content .= '<div id="upost_pdf_preview" data-src="'.$post_pdf.'">';
 					$the_content .= '<div class="pdf-actions">';
+					$the_content .= '<span></span>';
+					$the_content .= '<div class="btns">';
 					$the_content .= '<a target="_blank" class="upost_btn" href="'.$post_pdf.'">Open this file</a>';
 					
 					$nametitle = str_replace([" ", ",", "'"], "-", $post->post_title);
@@ -213,6 +215,7 @@ class Unique_Posts_Public {
 					
 					$the_content .= '<a class="download-file upost_btn" data-name="'.strtolower( $nametitle ).'" data-pdf="'.$post_pdf.'" href="'.$post_pdf.'">Download</a>';
 					
+					$the_content .= '</div>';
 					$the_content .= '</div>';
 					$the_content .= '<div class="upost_pdf_previews">';
 					$the_content .= '<span class="leftPdfPage">❮</span>';

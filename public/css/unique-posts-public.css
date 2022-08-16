@@ -2,7 +2,7 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
-
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css);
  div#upost_dashboard {
     margin: 20px 0;
 }
@@ -50,6 +50,7 @@ div#profile_tabs a:hover{
 #upost_dashboard .uposts_table {
     margin-top: 12px;
     margin-bottom: 12px;
+    border: none;
 }
 #upost_dashboard .dataTables_filter {
     float: right;
@@ -68,7 +69,9 @@ h3.welcome_back {
 .pdf-actions {
     margin: 20px 0;
     margin-bottom: 10px;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
 }
 a.upost_btn:last-child {
     margin-right: 0;
@@ -115,13 +118,28 @@ a.upost_btn:last-child {
 }
 #upost_dashboard table.dataTable tbody td {
     padding: 5px 18px !important;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+#upost_dashboard table.dataTable tbody tr{
+    background: #fff;
+}
+#upost_dashboard table.dataTable tbody tr:hover {
+    background: rgb(240, 240, 240);
+    transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s;
 }
 #upost_dashboard table.dataTable tbody td a:hover {
     text-decoration: underline;
 }
-#upost_dashboard table.dataTable thead th:first-child, #upost_dashboard table.dataTable tfoot th:first-child{
-    width: 34%;
-}
+.dataTables_filter label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} 
 #upost_dashboard table.dataTable tfoot th, #upost_dashboard table.dataTable tfoot td {
     padding: 5px 18px;
     border-top: none;
@@ -181,7 +199,7 @@ a.upost_btn:last-child {
     margin-bottom: 20px;
 }
 .upost_input .label_box {
-    width: 10%;
+    width: 15%;
     text-align: right;
     padding-right: 20px;
 }
@@ -285,6 +303,7 @@ button#save_upost {
     border-radius: 3px;
     cursor: pointer;
     display: inline-block;
+    border: none;
 }
 .quicktags-toolbar input[type="button"] {
     all: unset;
@@ -305,7 +324,7 @@ div#wp-upost_article_content-editor-container button:hover {
     background: #fff;
 }
 
-.success_popup {
+.success_popup, .sharing_popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -314,13 +333,20 @@ div#wp-upost_article_content-editor-container button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
     z-index: 99999;
+    background: #e7e7e773;
 }
 .popup_contents {
     padding: 20px;
     background: #fff;
     box-shadow: 0px 10px 21px -23px black;
+}
+span.closeUrlPopup {
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    user-select: none;
 }
 .popup_contents h3 {
     color: #2196f3;
@@ -328,6 +354,72 @@ div#wp-upost_article_content-editor-container button:hover {
     text-align: center;
     border-bottom: 1px solid;
 }
+.popup_contents.urlsharepcontent h3 {
+    margin-bottom: 14px;
+    text-align: left;
+}
+.popup_contents.urlsharepcontent .url_field {
+    display: flex;
+    gap: 5px;
+}
+.popup_contents.urlsharepcontent .url_field input {
+    all: unset;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    min-width: 300px;
+    outline: none;
+}
+.popup_contents.urlsharepcontent .url_field button.copy_post_url {
+    all: unset;
+    height: 28px;
+    background: #2196f3;
+    padding: 5px 10px;
+    border: 1px solid #2196f3;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.copyTooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.copyTooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.copyTooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.copyTooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
 .popup_contents table {
     all: unset;
     display: table;
@@ -419,7 +511,7 @@ div#upost_pdf_preview .upost_pdf_previews span.rightPdfPage {
     transform: translateY(-50%);
 }
 .dnone{
-    display: none;
+    display: none !important;
 }
 
 
@@ -471,6 +563,7 @@ div#search_results {
 }
 div#search_results .result_contents .upost h3 {
     margin: 0;
+    font-weight: 600;
 }
 div#search_results .result_contents .upost .post-info {
     margin: 0;
@@ -511,4 +604,85 @@ div#search_results .result_contents .upost .upost_image{
 }
 div#search_results .result_contents .upost .upost_image img {
     border-color: #e1e1e1 !important;
+}
+
+
+strong.action_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+span.action_btn_arrow {
+    line-height: 15px;
+}
+.action_btn_arrow i.fa-solid.fa-sort-down {
+    width: 22px;
+    height: 22px;
+    background: #2196f3;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    line-height: 17px;
+    font-size: 14px;
+}
+#upost_dashboard table.dataTable tbody tr td:first-child,.account_menu{
+    position: relative;
+}
+
+.action_popup, .account_popup {
+    position: absolute;
+    top: 100%;
+    background: #fff;
+    z-index: 99;
+    border: 1px solid #ddd;
+    width: 150px;
+}
+.account_popup {
+    left: 0 !important;
+    width: 100px;
+}
+.action_popup ul, .account_popup ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.action_popup ul li a, .account_popup ul li a {
+    text-decoration: none !important;
+    width: 100%;
+    display: inline-block;
+    height: 100%;
+    border: none !important;
+    box-shadow: none;
+    padding: 4px 14px !important;
+}
+.action_popup ul li a:focus, .account_popup ul li a:focus{
+    outline: none !important;
+}
+.action_popup ul li:hover, .account_popup ul li:hover, .account_popup ul li a.list_active {
+    background: #f4f3f3;
+}
+.action_popup.dnone, .account_popup.dnone{
+    display: none !important;
+}
+.upwarning {
+    background: aliceblue;
+    padding: 5px 10px;
+}
+.account_popup ul li:last-child a {
+    color: red;
+}
+span.verifield {
+    padding: 2px 15px;
+    border: 2px solid red;
+    border-radius: 3px;
+    color: red;
+    font-weight: 500;
+}
+.nopostFound {
+    text-align: center;
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
 }

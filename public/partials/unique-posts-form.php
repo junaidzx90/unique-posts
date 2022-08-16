@@ -225,7 +225,7 @@ if($upost_id !== null){
         <div class="upost_input">
             <div class="label_box"></div>
             <div class="input_box">
-                <button id="save_upost" name="<?php echo (($upost_id !== null)? 'update_front_upost': 'save_front_upost') ?>" type="submit">Submit Post</button>
+                <button id="save_upost" name="<?php echo (($upost_id !== null)? 'update_front_upost': 'save_front_upost') ?>" type="submit"><?php echo (($upost_id !== null)? 'Update post': 'Generate ID') ?></button>
             </div>
         </div>
     </form>
