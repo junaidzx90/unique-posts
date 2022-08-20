@@ -240,7 +240,7 @@ class Unique_Posts_Public {
 		$output .= '<span class="line"></span>';
 		$output .= '</div>';
 		$output .= '<div class="footer_bottom">';
-		$output .= '<div class="very_code">Unique verification code '.$unique_id.'</div>';
+		$output .= '<div class="very_code">Unique verification code: '.$unique_id.'</div>';
 		$output .= '<div class="authenticity">Verify Authenticity: <a href="'.get_option('upost_authenticity_url').'">'.get_option('upost_authenticity_url').'</a> </div>';
 		$output .= '</div>';
 		$output .= '</div>';

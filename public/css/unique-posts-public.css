@@ -2,7 +2,7 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css);
+ @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css);
  div#upost_dashboard {
     margin: 20px 0;
 }
@@ -110,7 +110,9 @@ a.upost_btn:last-child {
         margin: 0 auto;
     }
 }
-
+#upost_dashboard table.dataTable thead th:nth-child(2), #upost_dashboard table.dataTable tfoot th:nth-child(2) {
+    width: 25% !important;
+}
 #upost_dashboard table.dataTable thead th, #upost_dashboard table.dataTable thead td {
     padding: 5px 18px;
     border-bottom: none;
@@ -689,6 +691,7 @@ span.verifield {
 
 div#medical_certificate {
     width: 800px;
+    height: 904.25px;
     margin: 0 auto;
 }
 .cetificate_action {

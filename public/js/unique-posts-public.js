@@ -300,10 +300,16 @@ jQuery(document).ready(function ($) {
     let name = $(this).attr("data-name");
 
     var opt = {
-	    margin: [0, -14, 0, 0],
+	    margin: 0,
       filename:     name+'.pdf',
       image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, scrollY: 0 },
+      html2canvas:  { 
+		  scale: 2, 
+		  scrollY: 0, 
+		  scrollX: 0,
+		  windowWidth: document.querySelector("body").clientWidth,
+		  windowHeight: document.querySelector("body").clientHeight
+	  },
       jsPDF:        { unit: 'px', format: [element.clientHeight - 5, element.clientWidth], orientation: 'portrait' }
     };
     
