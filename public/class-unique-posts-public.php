@@ -105,8 +105,11 @@ class Unique_Posts_Public {
 		
 		wp_enqueue_script( 'pdf-js', UNIQUE_POSTS_ROOT . 'global/pdf.js', array(  ), $this->version, false );
 		wp_enqueue_script( 'worker-js', UNIQUE_POSTS_ROOT . 'global/pdf.warker.js', array( 'pdf-js', 'FileSaver' ), $this->version, false );
+		wp_enqueue_script( 'jspdf', UNIQUE_POSTS_ROOT . 'global/jspdf.min.js', array(  ), $this->version, false );
+		wp_enqueue_script( 'html2canvas', UNIQUE_POSTS_ROOT . 'global/html2canvas.js', array(  ), $this->version, false );
+		wp_enqueue_script( 'html2pdf', 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js', array(  ), $this->version, false );
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/unique-posts-public.js', array( 'jquery', 'worker-js' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/unique-posts-public.js', array( 'jquery', 'worker-js', 'jspdf', 'html2canvas', 'html2pdf' ), $this->version, true );
 
 	}
 
@@ -142,6 +145,109 @@ class Unique_Posts_Public {
 			require_once plugin_dir_path( __FILE__ )."partials/unique-posts-manage.php";
 		}
 		return ob_get_clean();
+	}
+
+	function get_patient_certificate($post_id){
+		$informations = get_post_meta($post_id, 'patient_informations', true);
+		$patient_name = null;
+		$id_number = null;
+		$patient_gender = null;
+		$patient_age = null;
+		$patient_email = null;
+		$patient_phone = null;
+		$start_date = null;
+		$end_date = null;
+		$description = null;
+		if(!empty($informations) && is_array($informations)){
+			$patient_name = $informations['patient_name'];
+			$id_number = $informations['id_number'];
+			$patient_gender = $informations['patient_gender'];
+			$patient_age = $informations['patient_age'];
+			$patient_email = $informations['patient_email'];
+			$patient_phone = $informations['patient_phone'];
+			$start_date = date("j F, Y", strtotime($informations['start_date']));
+			$end_date = date("j F, Y", strtotime($informations['end_date']));
+			$description = $informations['description'];
+			$unique_id = get_post_meta($post_id, 'upost_uid', true);
+		}
+		
+		$output = '<style>
+		h2.entry-title.fusion-post-title {
+			text-align: center;
+		}
+		</style>';
+		$output .= '<div id="medical_certificate">';
+		$output .= '<div class="certificate_header">';
+		$output .= '<div class="logo"><img src="'.get_option('upost_company_logo').'"></div>';
+		$output .= '</div>';
+
+		$output .= '<div class="certificate_contents">';
+		$output .= '<div class="company_information">';
+		$output .= '<ul>';
+		$output .= '<li><h3 class="compname">'.get_option('upost_company_name').'</h3></li>';
+		$output .= '<li><p class="comptag">'.get_option('upost_company_tag').'</p></li>';
+		$output .= '<li>Tel: '.get_option('upost_company_tel').'</li>';
+		$output .= '<li>Address: '.get_option('upost_company_address').'</li>';
+		$compEmail = get_option('upost_company_email');
+		$output .= '<li>Email: '.$compEmail.'</li>';
+		$website = get_option('upost_company_website');
+		$output .= '<li>Website: '.$website.'</li>';
+		$output .= '</ul>';
+		$output .= '</div>';
+
+		$output .= '<h3 class="patient_info_title">Patient Information</h3>';
+		$output .= '<div class="patient_informations">';
+		$output .= '<div class="row">';
+		$output .= '<div class="info_heading">Patient Name:</div>';
+		$output .= '<div class="info_value">'.$patient_name.'</div>';
+		$output .= '</div>';
+		$output .= '<div class="row">';
+		$output .= '<div class="info_heading">ID Number:</div>';
+		$output .= '<div class="info_value">'.$id_number.'</div>';
+		$output .= '</div>';
+		$output .= '<div class="row">';
+		$output .= '<div class="info_heading">Phone Number:</div>';
+		$output .= '<div class="info_value">'.$patient_phone.'</div>';
+		$output .= '</div>';
+		$output .= '</div>';
+
+		$post_date = get_the_date( "j F, Y", $post_id );
+		$output .= '<h3 class="notes_title">Doctor\'s Notes '.$post_date.'</h3>';
+		$output .= '<div class="notes">';
+
+		$notes = get_option('upost_doctors_notes');
+		$notes = preg_replace("/%patient_name%/", "<strong>$patient_name</strong>", $notes);
+		$notes = preg_replace("/%patient_diagnosis%/", "<strong>$description</strong>", $notes);
+		$notes = preg_replace("/%start_date%/", "<strong>$start_date</strong>", $notes);
+		$notes = preg_replace("/%end_date%/", "<strong>$end_date</strong>", $notes);
+		$notes = preg_replace("/%unique_id%/", "<strong>$unique_id</strong>", $notes);
+		$doctorname = get_option('upost_doctors_name');
+		$notes = preg_replace("/%doctor_name%/", "<strong>$doctorname</strong>", $notes);
+		$specialty = get_option('upost_doctors_specialty');
+		$notes = preg_replace("/%doctor_specialty%/", "<strong>$specialty</strong>", $notes);
+		$notes = preg_replace("/%post_date%/", "<strong>$post_date</strong>", $notes);
+
+		$output .= wpautop( $notes, true );
+
+		$output .= '</div>';
+		$output .= '</div>';
+
+		$output .= '<div class="certificate_footer">';
+		$output .= '<div class="certificate_contents">';
+		$output .= '<div class="footer_head">';
+		$output .= '<span class="line"></span>';
+		$output .= '<div class="foo_title">This medical certificate is generated by '.str_replace(['https://', 'http://'], '', get_bloginfo( 'url' )).'</div>';
+		$output .= '<span class="line"></span>';
+		$output .= '</div>';
+		$output .= '<div class="footer_bottom">';
+		$output .= '<div class="very_code">Unique verification code '.$unique_id.'</div>';
+		$output .= '<div class="authenticity">Verify Authenticity: <a href="'.get_option('upost_authenticity_url').'">'.get_option('upost_authenticity_url').'</a> </div>';
+		$output .= '</div>';
+		$output .= '</div>';
+		$output .= '</div>';
+		$output .= '</div>';
+		
+		return $output;
 	}
 
 	function unique_post_contents($the_content){
@@ -223,6 +329,15 @@ class Unique_Posts_Public {
 					$the_content .= '<span class="rightPdfPage">❯</span>';
 					$the_content .= '</div>';
 					$the_content .= '</div>';
+					break;
+				case 'certificate':
+					$unique_id = get_post_meta($post->ID, 'upost_uid', true);
+					?>
+					<div class="cetificate_action">
+						<a href="" target="_blank" class="upost_btn" data-name="<?php echo 'certificate-'.$unique_id ?>" id="certificate_download">Download</a>
+					</div>
+					<?php
+					echo $this->get_patient_certificate($post->ID);
 					break;
 			}
 		}

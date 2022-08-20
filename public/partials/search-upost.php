@@ -92,6 +92,16 @@
                                 
                                 <?php
                                 break;
+                            case 'certificate':
+                                $unique_id = get_post_meta($upost->ID, 'upost_uid', true);
+                                ?>
+                                <div class="cetificate_action">
+                                    <a target="_blank" class="upost_btn" href="<?php echo get_the_permalink( $upost->ID ) ?>">Open this</a>
+                                    <a href="" target="_blank" class="upost_btn" data-name="<?php echo 'certificate-'.$unique_id ?>" id="certificate_download">Download</a>
+                                </div>
+                                <?php
+                                echo $this->get_patient_certificate($upost->ID);
+                                break;
                         }
                         ?>
                         

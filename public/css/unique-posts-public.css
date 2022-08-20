@@ -686,3 +686,160 @@ span.verifield {
     font-size: 16px;
     font-weight: 500;
 }
+
+div#medical_certificate {
+    width: 800px;
+    margin: 0 auto;
+}
+.cetificate_action {
+    width: 800px;
+    margin: 10px auto;
+}
+.certificate_contents {
+    padding: 10px 25px;
+}
+.certificate_footer .certificate_contents {
+    padding: 10px 0;
+}
+div#certificate_content {
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+.patient_row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+.patient_row .upost_field {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+.patient_row .upost_field label {
+    font-weight: 700;
+}
+.patient_row .upost_field input {
+    width: -webkit-fill-available;
+    width: -moz-fill-available;
+}
+.patient_row .upost_field p {
+    margin: 0;
+    color: #a4a4a4;
+    font-size: 14px;
+}
+
+
+.certificate_header {
+    height: 70px;
+    background: #03a9f4;
+    text-align: center;
+}
+.certificate_header .logo {
+    width: 200px;
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+}
+.company_information ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.company_information ul li {
+    text-align: right !important;
+}
+
+.company_information h3.compname {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+.company_information  p.comptag {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+}
+h3.patient_info_title {
+    text-align: left;
+    margin: 20px 0 0;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #03a9f4 !important;
+}
+.patient_informations {
+    margin: 10px 0 28px;
+}
+.patient_informations .row {
+    display: flex;
+    gap: 10px;
+}
+.patient_informations .row .info_heading {
+    width: 50%;
+}
+.patient_informations .row .info_value {
+    padding: 3px 15px;
+    background: #03a9f42e;
+    width: 50%;
+    text-align: center;
+}
+.patient_informations .row {
+    display: flex;
+    margin: 0 0 10px !important;
+}
+h3.notes_title {
+    margin: 12px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+.certificate_footer {
+    background: #03a9f4;
+}
+.certificate_contents .footer_head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.certificate_contents .footer_head span.line {
+    display: block;
+    width: 30%;
+    height: 3px;
+    background: #fff;
+}
+.certificate_contents .footer_head .foo_title {
+    font-size: 14px;
+    color: #fff;
+    width: 65%;
+    text-align: center;
+}
+.certificate_contents .footer_bottom {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    margin-top: 10px;
+    padding: 10px 50px;
+}
+.cetificate_action {
+    text-align: right;
+    margin-bottom: 12px;
+}
+
+.very_code,.authenticity {
+    width: 50%;
+}
+.authenticity {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+}
+.authenticity a {
+    color: white !important;
+}
+a#certificate_download[disabled] {
+    opacity: .3;
+    user-select: none;
+    pointer-events: none;
+    cursor: default;
+}

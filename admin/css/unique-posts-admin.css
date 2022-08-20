@@ -89,3 +89,30 @@ img#upost_pdf_view {
 .dnone{
     display: none;
 }
+
+.patient_row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+.patient_row .upost_field {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+.patient_row .upost_field label {
+    font-weight: 700;
+}
+.patient_row .upost_field input {
+    width: -webkit-fill-available;
+    width: -moz-fill-available;
+}
+.patient_row .upost_field p {
+    margin: 0;
+    color: #a4a4a4;
+    font-size: 14px;
+}
+.patient_desc_row .upost_field {
+    display: flex;
+    flex-direction: column;
+}

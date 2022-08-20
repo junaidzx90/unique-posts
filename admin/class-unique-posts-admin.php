@@ -179,6 +179,88 @@ class Unique_Posts_Admin {
 
 	function admin_menu_upost(){
 		add_submenu_page( "edit.php?post_type=unique-posts", "Shortcodes", "Shortcodes", "manage_options", "upost-shortcodes", [$this, "upost_shortcodes"], null );
+		add_submenu_page( "edit.php?post_type=unique-posts", "Settings", "Settings", "manage_options", "upsettings", [$this, "unique_post_settings"], null );
+
+		add_settings_section( 'upost_setting_section', '', '', 'upost_setting_page' );
+
+		add_settings_field( 'upost_company_logo', 'Company Logo', [$this, 'upost_company_logo_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_company_logo' );
+		add_settings_field( 'upost_company_name', 'Company Name', [$this, 'upost_company_name_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_company_name' );
+		add_settings_field( 'upost_company_tag', 'Company Tagline', [$this, 'upost_company_tag_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_company_tag' );
+		add_settings_field( 'upost_company_tel', 'Teliphone', [$this, 'upost_company_tel_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_company_tel' );
+		add_settings_field( 'upost_company_address', 'Address', [$this, 'upost_company_address_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_company_address' );
+		add_settings_field( 'upost_company_email', 'Email', [$this, 'upost_company_email_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_company_email' );
+		add_settings_field( 'upost_company_website', 'Website', [$this, 'upost_company_website_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_company_website' );
+		add_settings_field( 'upost_doctors_name', 'Doctor Name', [$this, 'upost_doctors_name_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_doctors_name' );
+		add_settings_field( 'upost_doctors_specialty', 'Doctor Speciality', [$this, 'upost_doctors_specialty_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_doctors_specialty' );
+		add_settings_field( 'upost_authenticity_url', 'Authenticity URL', [$this, 'upost_authenticity_url_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_authenticity_url' );
+		add_settings_field( 'upost_doctors_notes', 'Doctor\'s Notes', [$this, 'upost_doctors_notes_cb'], 'upost_setting_page','upost_setting_section' );
+		register_setting( 'upost_setting_section', 'upost_doctors_notes' );
+	}
+
+	function upost_company_logo_cb(){
+		echo '<input type="url" name="upost_company_logo" class="widefat" value="'.get_option('upost_company_logo').'">';
+	}
+	function upost_company_name_cb(){
+		echo '<input type="text" name="upost_company_name" class="widefat" value="'.get_option('upost_company_name').'">';
+	}
+	function upost_company_tag_cb(){
+		echo '<input type="text" name="upost_company_tag" class="widefat" value="'.get_option('upost_company_tag').'">';
+	}
+	function upost_company_tel_cb(){
+		echo '<input type="text" name="upost_company_tel" class="widefat" value="'.get_option('upost_company_tel').'">';
+	}
+	function upost_doctors_name_cb(){
+		echo '<input type="text" name="upost_doctors_name" class="widefat" value="'.get_option('upost_doctors_name').'">';
+	}
+	function upost_company_address_cb(){
+		echo '<input type="text" name="upost_company_address" class="widefat" value="'.get_option('upost_company_address').'">';
+	}
+	function upost_company_email_cb(){
+		echo '<input type="email" name="upost_company_email" class="widefat" value="'.get_option('upost_company_email').'">';
+	}
+	function upost_company_website_cb(){
+		echo '<input type="text" name="upost_company_website" class="widefat" value="'.get_option('upost_company_website').'">';
+	}
+	function upost_doctors_specialty_cb(){
+		echo '<input type="text" name="upost_doctors_specialty" class="widefat" value="'.get_option('upost_doctors_specialty').'">';
+	}
+	function upost_authenticity_url_cb(){
+		echo '<input type="url" name="upost_authenticity_url" class="widefat" value="'.get_option('upost_authenticity_url').'">';
+	}
+	
+	function upost_doctors_notes_cb(){
+		wp_editor( wpautop( get_option('upost_doctors_notes'), true ), 'upost_doctors_notes', [
+			'media_buttons' => false,
+			'editor_height' => 300,
+			'textarea_name' => 'upost_doctors_notes'
+		] );
+		echo '<p><b>Placeholders</b> <code>%patient_name%</code> <code>%patient_diagnosis%</code> <code>%start_date%</code> <code>%end_date%</code> <code>%unique_id%</code> <code>%doctor_name%</code> <code>%doctor_specialty%</code> <code>%post_date%</code></p>';
+	}
+
+	function unique_post_settings(){
+		?>
+		<h3>Settings</h3>
+		<hr>
+		<div class="uposts-settings">
+            <form style="width: 75%;" method="post" action="options.php">
+                <?php
+                settings_fields( 'upost_setting_section' );
+                do_settings_sections('upost_setting_page');
+                echo get_submit_button( 'Save Changes', 'secondary', 'save-uposts-setting' );
+                ?>
+            </form>
+        </div>
+		<?php
 	}
 
 	function upost_shortcodes(){
@@ -241,6 +323,7 @@ class Unique_Posts_Admin {
 			<option <?php echo (($selected === 'article')? 'selected': '') ?> value="article">Article</option>
 			<option <?php echo (($selected === 'images')? 'selected': '') ?> value="images">Images</option>
 			<option <?php echo (($selected === 'pdf')? 'selected': '') ?> value="pdf">PDF</option>
+			<option <?php echo (($selected === 'certificate')? 'selected': '') ?> value="certificate">Certificate</option>
 		</select>
 		<?php
 	}
@@ -296,6 +379,85 @@ class Unique_Posts_Admin {
 				</div>
 			</div>
 
+			<div id="upost_certificate" class="upost_content_box <?php echo (($selectedType !== 'certificate')?'dnone':'') ?>">
+				
+				<?php	
+				$informations = get_post_meta($post->ID, 'patient_informations', true);
+				$patient_name = null;
+				$id_number = null;
+				$patient_gender = null;
+				$patient_age = null;
+				$patient_email = null;
+				$patient_phone = null;
+				$start_date = null;
+				$end_date = null;
+				$description = null;
+				if(!empty($informations) && is_array($informations)){
+					$patient_name = $informations['patient_name'];
+					$id_number = $informations['id_number'];
+					$patient_gender = $informations['patient_gender'];
+					$patient_age = $informations['patient_age'];
+					$patient_email = $informations['patient_email'];
+					$patient_phone = $informations['patient_phone'];
+					$start_date = $informations['start_date'];
+					$end_date = $informations['end_date'];
+					$description = $informations['description'];
+				}
+				?>
+				<div class="patient_row">
+					<div class="upost_field">
+						<label for="patient_name">Patient Name</label>
+						<input type="text" name="patient_name" id="patient_name" value="<?php echo $patient_name ?>">
+					</div>
+					<div class="upost_field">
+						<label for="id_number">ID Number</label>
+						<input type="number" name="id_number" id="id_number" value="<?php echo $id_number ?>">
+						<p class="hints">Patient ID or Student number</p>
+					</div>
+				</div>
+				<div class="patient_row">
+					<div class="upost_field">
+						<label for="patient_gender">Gender</label>
+						<select name="patient_gender" id="patient_gender">
+							<option <?php echo (($patient_gender === 'male') ? 'selected': '') ?> value="male">Male</option>
+							<option <?php echo (($patient_gender === 'female') ? 'selected': '') ?> value="female">Female</option>
+							<option <?php echo (($patient_gender === 'other') ? 'selected': '') ?> value="other">Other</option>
+						</select>
+					</div>
+					<div class="upost_field">
+						<label for="patient_age">Age</label>
+						<input type="number" name="patient_age" id="patient_age" value="<?php echo $patient_age ?>">
+					</div>
+				</div>
+				<div class="patient_row">
+					<div class="upost_field">
+						<label for="patient_email">Email</label>
+						<input type="email" name="patient_email" id="patient_email" value="<?php echo $patient_email ?>">
+					</div>
+					<div class="upost_field">
+						<label for="patient_phone">Phone Number</label>
+						<input type="number" name="patient_phone" id="patient_phone" value="<?php echo $patient_phone ?>">
+					</div>
+				</div>
+				<div class="patient_row">
+					<div class="upost_field">
+						<label for="start_date">Start Date</label>
+						<input type="date" name="start_date" id="start_date" value="<?php echo $start_date ?>">
+					</div>
+					<div class="upost_field">
+						<label for="end_date">End Date</label>
+						<input type="date" name="end_date" id="end_date" value="<?php echo $end_date ?>">
+					</div>
+				</div>
+				<div class="patient_desc_row">
+					<div class="upost_field">
+						<label for="description">Description of the medical diagnosis</label>
+						<textarea name="description" id="description"><?php echo $description ?></textarea>
+					</div>
+				</div>
+			
+			</div>
+
 		</div>
 		<?php
 	}
@@ -305,6 +467,35 @@ class Unique_Posts_Admin {
 		$article = ((isset($_POST['upost_article_content'])) ? $_POST['upost_article_content']: '');
 		$images = ((isset($_POST['upost_media_images'])) ? $_POST['upost_media_images']: []);
 		$pdf = ((isset($_POST['upost_pdf_file'])) ? $_POST['upost_pdf_file']: '');
+
+		// Patient form
+		$patient_name = ((isset($_POST['patient_name'])) ? $_POST['patient_name'] : '');
+		$patient_name = sanitize_text_field( $patient_name );
+		$id_number = ((isset($_POST['id_number'])) ? $_POST['id_number'] : '');
+		$id_number = intval( $id_number );
+		$patient_gender = ((isset($_POST['patient_gender'])) ? $_POST['patient_gender'] : '');
+		$patient_age = ((isset($_POST['patient_age'])) ? $_POST['patient_age'] : '');
+		$patient_age = intval( $patient_age );
+		$patient_email = ((isset($_POST['patient_email'])) ? $_POST['patient_email'] : '');
+		$patient_email = sanitize_email( $patient_email );
+		$patient_phone = ((isset($_POST['patient_phone'])) ? $_POST['patient_phone'] : '');
+		$patient_phone = intval( $patient_phone );
+		$start_date = ((isset($_POST['start_date'])) ? $_POST['start_date'] : '');
+		$end_date = ((isset($_POST['end_date'])) ? $_POST['end_date'] : '');
+		$description = ((isset($_POST['description'])) ? $_POST['description'] : '');
+		$description = sanitize_text_field($description);
+		$description = stripslashes($description);
+		
+		$patient_informations = [];
+		$patient_informations['patient_name'] = $patient_name;
+		$patient_informations['id_number'] = $id_number;
+		$patient_informations['patient_gender'] = $patient_gender;
+		$patient_informations['patient_age'] = $patient_age;
+		$patient_informations['patient_email'] = $patient_email;
+		$patient_informations['patient_phone'] = $patient_phone;
+		$patient_informations['start_date'] = $start_date;
+		$patient_informations['end_date'] = $end_date;
+		$patient_informations['description'] = $description;
 
 		if(empty(get_post_meta($post_id, 'upost_uid', true))){
 			update_post_meta($post_id, 'upost_uid', get_upost_uid($post_id) );
@@ -323,6 +514,9 @@ class Unique_Posts_Admin {
 		}
 		if(!empty($pdf)){
 			update_post_meta( $post_id, 'upost_pdf_file', $pdf );
+		}
+		if(sizeof($patient_informations) > 0){
+			update_post_meta( $post_id, 'patient_informations', $patient_informations );
 		}
 	}
 }

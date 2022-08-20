@@ -29,6 +29,15 @@ jQuery(document).ready(function ($) {
     $('.upost_image_previews').html('');
     $('#upload_upost_pdf').val('');
     $('.upost_pdf_previews img').attr('src', '');
+    $("#patient_name").val("");
+    $("#id_number").val("");
+    $("#patient_age").val("");
+    $("#patient_email").val("");
+    $("#patient_phone").val("");
+    $("#start_date").val("");
+    $("#end_date").val("");
+    $("#description").val("");
+
     if ($('#upload_upost_pdf').val() === '') {
       $("label[for='upload_upost_pdf'] span").text('Upload PDF');
     } else {
@@ -46,6 +55,9 @@ jQuery(document).ready(function ($) {
         break;
       case 'pdf':
         $('#pdf_content').removeClass('dnone');
+        break;
+      case 'certificate':
+        $('#certificate_content').removeClass('dnone');
         break;
     }
   });
@@ -278,5 +290,25 @@ jQuery(document).ready(function ($) {
 
   $(document).on("mouseout", ".copy_post_url", function(){
     $(this).parents(".url_field").find(".tooltiptext").text("Copy to clipboard");
-  })
+  });
+
+
+  $('#certificate_download').on('click', function (e) {
+    e.preventDefault();
+    $(this).attr("disabled", "disabled");
+    let element = document.getElementById("medical_certificate");
+    let name = $(this).attr("data-name");
+
+    var opt = {
+	    margin: [0, -14, 0, 0],
+      filename:     name+'.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, scrollY: 0 },
+      jsPDF:        { unit: 'px', format: [element.clientHeight - 5, element.clientWidth], orientation: 'portrait' }
+    };
+    
+    // New Promise-based usage:
+    html2pdf().set(opt).from(element).save();
+    $(this).removeAttr("disabled");
+  });
 });

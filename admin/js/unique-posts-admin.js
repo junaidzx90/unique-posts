@@ -137,18 +137,29 @@ jQuery(function( $ ) {
 		$("#upost_media_images").html("");
 		$('#upost_document_file').val("");
 		$('#upost_pdf_view').attr("src", "");
+		$("#patient_name").val("");
+		$("#id_number").val("");
+		$("#patient_age").val("");
+		$("#patient_email").val("");
+		$("#patient_phone").val("");
+		$("#start_date").val("");
+		$("#end_date").val("");
+		$("#description").val("");
 		tinymce.get("upost_article_content").setContent("")
 		
 		switch ($(this).val()) {
 			case 'article':
 				$(".upost_article").removeClass("dnone")
-				break;
-				case 'images':
+			break;
+			case 'images':
 				$(".image_content").removeClass("dnone");
-				break;
-				case 'pdf':
+			break;
+			case 'pdf':
 				$(".pdf_content").removeClass("dnone");
-				break;
+			break;
+			case 'certificate':
+				$("#upost_certificate").removeClass("dnone");
+			break;
 		}
 	});
 });
